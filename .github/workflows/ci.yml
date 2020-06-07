@@ -1,0 +1,44 @@
+name: CI
+
+on: 
+  push:
+    branches:    
+      - release/master 
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout master
+      uses: actions/checkout@v2
+      with:
+        ref: master
+
+    - name: Use Node.js 10
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10'
+    
+    - name: cd client
+      run: cd client
+    
+    - name: yarn install
+      run: yarn install
+      
+    - name: yarn build:prod
+      run: yarn run build:prod --if-present
+        
+    - name: cd to root
+      run: cd ..
+
+    - name: add all changes
+      run: git add .
+
+    - name: commit
+      run: git commit -am "Deploy production"
+
+    - name: push to master
+      run: git push origin master
+        
