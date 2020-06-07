@@ -21,17 +21,11 @@ jobs:
       with:
         node-version: '10'
     
-    - name: cd client
-      run: cd client
-    
     - name: yarn install
       run: yarn install
       
     - name: yarn build:prod
       run: yarn run build:prod --if-present
-        
-    - name: cd to root
-      run: cd ..
 
     - name: add all changes
       run: git add .
