@@ -24,15 +24,5 @@ jobs:
     - name: yarn install
       run: yarn install
       
-    - name: yarn build:prod
-      run: yarn run build:prod --if-present
-
-    - name: add all changes
-      run: git add .
-
-    - name: commit
-      run: git commit -am "Deploy production"
-
-    - name: push to master
-      run: git push origin master
-        
+    - name: yarn build
+      run: yarn run build --if-present
