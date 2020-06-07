@@ -26,3 +26,6 @@ jobs:
       
     - name: yarn build
       run: yarn run build --if-present
+      
+    - name: git status
+      run: git status
